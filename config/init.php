@@ -1,0 +1,25 @@
+<?php
+
+require "classDB.php";
+
+define("CONFIG_LIVE", "1"); // 0: Test enviroment || 1: Live enviroment
+
+if (CONFIG_LIVE == 1) {
+    $DB_SERVER = "localhost";
+    $DB_NAME = "bookstore";
+    $DB_USER = "root";
+    $DB_PASS = "";
+} else {
+    $DB_SERVER = "";
+    $DB_NAME = "";
+    $DB_USER = "";
+    $DB_PASS = "";
+}
+
+$db = new db($DB_SERVER, $DB_NAME, $DB_USER, $DB_PASS);
+
+//if($db){
+    //echo "Forbindelse til database lykkedes";
+//}else{
+    //echo "Forbindelse til database ikke fundet";
+//}
