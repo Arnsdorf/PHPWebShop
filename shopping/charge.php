@@ -25,4 +25,4 @@ try {
 } catch (ApiErrorException $e) {
 }
 
-echo "paid";
+echo "paid successfully";
