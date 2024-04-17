@@ -3,6 +3,22 @@
 session_start();
 define("APPURL", "http://localhost/PHPWebShop");
 
+
+
+
+
+require dirname(dirname(__FILE__)) . "/config/init.php";
+
+
+
+if(isset($_SESSION['user_id'])){
+    $number = $db->query("SELECT COUNT(*) as num_products FROM cart WHERE userID = '$_SESSION[user_id]'");
+    $number->execute();
+
+    $getNumber = $number->fetch(PDO::FETCH_OBJ);
+}
+
+
 ?>
 
 
@@ -45,7 +61,7 @@ define("APPURL", "http://localhost/PHPWebShop");
                 <?php if (isset($_SESSION['username'])) : ?>
 
                 <li class="nav-item">
-                    <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>/shopping/cart.php"><i class="fas fa-shopping-cart"></i>(2)</a>
+                    <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>/shopping/cart.php"><i class="fas fa-shopping-cart"></i>(<?php echo $getNumber->num_products;?>)</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -55,6 +71,7 @@ define("APPURL", "http://localhost/PHPWebShop");
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a></li>
                     </ul>

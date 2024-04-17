@@ -1,91 +1,49 @@
-<?php require_once "includes/header.php";?>
-<?php require_once "config/init.php";?>
+<?php require "includes/header.php";?>
+<?php require "config/init.php";?>
 <?php
 
+$rows = $db->query("SELECT * FROM products WHERE prodStatus = 1");
+$rows->execute();
 
+$allRows = $rows->fetchAll(PDO::FETCH_OBJ);
+
+// Tjek om brugeren er logget ind
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    // Hvis brugeren ikke er logget ind, kan du sætte en standardværdi
+    $username = "Gæst";
+}
 
 ?>
-        <div class="row mt-5">
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card" >
-                    <img height="213px" class="card-img-top" src="images/node.png">
-                    <div class="card-body" >
-                        <h5 class="d-inline"><b>Node Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($10/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                         <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>      
-     
-                    </div>
-                </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="welcome-section">
+                <h2 class="text-center mb-4">Velkommen <?php echo $username; ?></h2>
+                <p class="text-center">Opdag ny viden hver dag med vores daglige kodningskurser! Uanset om du er en nybegynder eller en erfaren udvikler, tilbyder vi en bred vifte af kurser, der dækker alt fra grundlæggende koncepter til avancerede teknologier.</p>
+                <p class="text-center">Tilmeld dig i dag og begynd din rejse mod kodningsmesterskab! Ny viden venter på dig hver dag.</p>
             </div>
+        </div>
+    </div>
 
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 mb-5">
+    <div class="row mt-5">
+        <?php foreach($allRows as $product) : ?>
+            <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
-                    <a href="http://localhost/bookstore/shopping/single.php"><img height="213px" class="card-img-top" src="images/django.png"></a>
+                    <img class="card-img-top" src="images/<?php echo $product->prodImg; ?>" alt="product">
                     <div class="card-body">
-                    <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($20/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                       <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>      
+                        <h5 class="card-title"><?php echo $product->prodName; ?></h5>
+                        <p class="card-text"><?php echo substr($product->prodDescription, 0, 120). '...';?></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="text-muted">$<?php echo $product->prodPrice; ?>/item</div>
+                            <a href="<?php echo APPURL;?>/shopping/single.php?id=<?php echo $product->prodID; ?>" class="btn btn-primary">More <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card">
-                    <img     height="213px" class="card-img-top" src="images/django.png">
-                    <div class="card-body">
-                    <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($50/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                       <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>      
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card">
-                    <img height="213px" class="card-img-top" src="images/django.png">
-                    <div class="card-body">
-                    <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($25/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                       <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>       
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card">
-                    <img height="213px" class="card-img-top" src="images/html5.jpg">
-                    <div class="card-body">
-                    <h5 class="d-inline"><b>Html5 Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($20/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                        <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>      
-                    </div>
-                </div>
-            </div>
-            <br>
-
-            <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1">
-                <div class="card d-relative" >
-                    <img height="213px" class="card-img-top" src="images/django.png">
-                    <div class="card-body" width="200px">
-                    <h5 class="d-inline"><b>Django Basics</b> </h5>
-                        <h5 class="d-inline"><div class="text-muted d-inline">($10/item)</div></h5>
-                        <p>Monotonectally enable customized 
-                            growth strategies and 24/7 portals.  functional opportunities. </p>
-                       <a href="#"  class="btn btn-primary w-100 rounded my-2"> More<i class="fas fa-arrow-right"></i> </a>      
-                    </div>
-                </div>
-            </div>
-         </div>
+        <?php endforeach; ?>
+    </div>
+</div>
 
 <?php require_once "includes/footer.php";?>
