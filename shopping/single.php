@@ -44,9 +44,10 @@ if(isset($_GET['id'])){
         echo "404"; // Produktet blev ikke fundet
     }
 } else {
-    echo "404"; // Ingen produkt-id blev angivet i URL'en
+    header("location: ".APPURL."/404.php"); // Ingen produkt-id blev angivet i URL'en
 }
 ?>
+
 
 <div class="row mt-5 d-flex justify-content-center">
     <div class="col-md-10">

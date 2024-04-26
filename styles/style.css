@@ -1,0 +1,21 @@
+/* Style.css */
+
+body {
+	font-family: 'Open Sans', sans-serif; /* Brødtekst */
+
+}
+
+h1, h2, h3 {
+	font-family: 'Montserrat', sans-serif; /* Overskrifter */
+}
+.banner {
+	background-size: cover;
+	background-position: center;
+	height: 10vw;
+
+}
+
+.banner-text {
+	color: white; /* Ændre tekstfarve efter behov */
+	font-size: 36px; /* Ændre tekststørrelse efter behov */
+}

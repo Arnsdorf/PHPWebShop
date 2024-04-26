@@ -30,15 +30,18 @@ if(isset($_SESSION['user_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/5c5946fe44.js" crossorigin="anonymous"></script>
-    <title>Bookstore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>CodeLearner</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark" >
     <div class="container" style="margin-top: none">
-        <a class="navbar-brand  text-white" href="<?php echo APPURL; ?>">Bookstore</a>
+        <a class="navbar-brand  text-white" href="<?php echo APPURL; ?>">CodeLearner</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,9 +57,7 @@ if(isset($_SESSION['user_id'])){
                 <li class="nav-item ">
                     <a class="nav-link  text-white" href="<?php echo APPURL; ?>/contact.php">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active  text-white" aria-current="page" href="<?php echo APPURL; ?>/categories/index.php">Categories</a>
-                </li>
+
 
                 <?php if (isset($_SESSION['username'])) : ?>
 
@@ -69,9 +70,8 @@ if(isset($_SESSION['user_id'])){
                         <?php echo $_SESSION['username']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+
+                        <li><a class="dropdown-item" href="<?php echo APPURL; ?>/profile.php">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo APPURL; ?>/auth/logout.php">Logout</a></li>
                     </ul>

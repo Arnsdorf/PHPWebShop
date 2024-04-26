@@ -1,7 +1,8 @@
 <?php require_once "../includes/header.php"; ?>
 <?php require_once "../config/init.php"; ?>
 
-<?php echo $_SESSION['price']; ?>
+
+
 
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Checkout</h2>

@@ -10,19 +10,28 @@ $allRows = $rows->fetchAll(PDO::FETCH_OBJ);
 // Tjek om brugeren er logget ind
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+    $welcomeMessage = "Welcome back $username";
 } else {
     // Hvis brugeren ikke er logget ind, kan du sætte en standardværdi
-    $username = "Gæst";
+    $welcomeMessage = "Welcome to CodeLearner";
 }
 
 ?>
+
+<style>
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+    }
+</style>
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="welcome-section">
-                <h2 class="text-center mb-4">Velkommen <?php echo $username; ?></h2>
-                <p class="text-center">Opdag ny viden hver dag med vores daglige kodningskurser! Uanset om du er en nybegynder eller en erfaren udvikler, tilbyder vi en bred vifte af kurser, der dækker alt fra grundlæggende koncepter til avancerede teknologier.</p>
-                <p class="text-center">Tilmeld dig i dag og begynd din rejse mod kodningsmesterskab! Ny viden venter på dig hver dag.</p>
+                <h2 class="text-center mb-4"><?php echo $welcomeMessage; ?></h2>
+                <p class="text-center">Discover new knowledge every day with our daily coding courses! Whether you're a beginner or an experienced developer, we offer a wide range of courses covering everything from basic concepts to advanced technologies.</p>
+                <p class="text-center">Sign up today and start your journey towards coding mastery! New knowledge awaits you every day.</p>
             </div>
         </div>
     </div>
@@ -30,8 +39,8 @@ if(isset($_SESSION['username'])) {
     <div class="row mt-5">
         <?php foreach($allRows as $product) : ?>
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="images/<?php echo $product->prodImg; ?>" alt="product">
+                <div class="card h-100">
+                    <img class="card-img-top img-fluid" src="images/<?php echo $product->prodImg; ?>" alt="product">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $product->prodName; ?></h5>
                         <p class="card-text"><?php echo substr($product->prodDescription, 0, 120). '...';?></p>
@@ -44,6 +53,7 @@ if(isset($_SESSION['username'])) {
             </div>
         <?php endforeach; ?>
     </div>
+
 </div>
 
 <?php require_once "includes/footer.php";?>
